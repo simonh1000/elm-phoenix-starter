@@ -120,7 +120,7 @@ gulp.task('default', [
 
 //==================WATCHERS=====================
 
-gulp.task('watch', function() {
+gulp.task('watch', ['elm', 'css-app'], function() {
 
   // CSS / SASS
   gulp.watch(vendorCssPaths, ['css-vendor']).on('change', reportChange);
@@ -131,8 +131,6 @@ gulp.task('watch', function() {
   // JS
   gulp.watch(jsBeforePaths, ['js-before']).on('change', reportChange);
   gulp.watch(jsAfterPaths, ['js-after']).on('change', reportChange);
-
-
 
   // Other assets
   gulp.watch([
