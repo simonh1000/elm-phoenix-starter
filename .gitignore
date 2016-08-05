@@ -18,3 +18,4 @@ erl_crash.dump
 # Libraries
 node_modules
 elm-stuff
+.DS_Store
