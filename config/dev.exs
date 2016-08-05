@@ -23,7 +23,8 @@ config :meepg, Meepg.Endpoint,
       ~r{web/templates/.*(eex)$}
     ]
   ],
-  watchers: [node: ["node_modules/gulp/bin/gulp.js", "watch"]]
+  watchers: [node: ["node_modules/gulp/bin/gulp.js", "watch", "--stdin",
+                    cd: Path.expand("../", __DIR__)]]
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
