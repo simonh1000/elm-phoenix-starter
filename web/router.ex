@@ -16,7 +16,7 @@ defmodule Meepg.Router do
   # Other scopes may use custom stacks.
   scope "/api", Meepg do
     pipe_through :api
-    get "default", DefaultController, :show
+    get "/default", DefaultController, :show
   end
 
   scope "/", Meepg do
