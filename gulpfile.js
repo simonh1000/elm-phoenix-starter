@@ -3,9 +3,9 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
-var compress = require('gulp-yuicompressor');
+// var compress = require('gulp-yuicompressor');
 var elm = require('gulp-elm');
-
+var babel = require("gulp-babel");
 /*
  * E L M
  */
@@ -22,7 +22,8 @@ gulp.task('elm', ['elm-init'], function() {
  function onErrorHandler(err) {
      console.log(err.message);
  }
- return gulp.src(elmPaths)             // "./src/Main.elm"
+ // return gulp.src(elmPaths)             // "./src/Main.elm"
+ return gulp.src(elmMain)             // "./src/Main.elm"
      .pipe(elm())
      .on('error', onErrorHandler)
 	//  .pipe(gulpif(production, uglify()) )   // uglify
@@ -66,9 +67,9 @@ gulp.task('css-vendor', function() {
   return gulp
     .src(vendorCssPaths)
     .pipe(concat('app-vendor.css'))
-    .pipe(compress({
-      type: 'css'
-    }))
+    // .pipe(compress({
+    //   type: 'css'
+    // }))
     .pipe(gulp.dest('priv/static/css'));
 });
 
@@ -77,9 +78,9 @@ gulp.task('css-app', function() {
     .src(appCssPaths)
     .pipe(concat('app.scss'))
     .pipe(sass())
-    .pipe(compress({
-      type: 'css'
-    }))
+    // .pipe(compress({
+    //   type: 'css'
+    // }))
     .pipe(gulp.dest('priv/static/css'));
 });
 
@@ -96,10 +97,13 @@ gulp.task('js-before', function() {
 gulp.task('js-after', function() {
   return gulp
     .src(jsAfterPaths)
+    // .pipe(sourcemaps.init())
+    .pipe(babel())
     .pipe(concat('app-after.js'))
-    .pipe(compress({
-      type: 'js'
-    }))
+    // .pipe(sourcemaps.write("."))
+    // .pipe(compress({
+    //   type: 'js'
+    // }))
     .pipe(gulp.dest('priv/static/js'));
 });
 

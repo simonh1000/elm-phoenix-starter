@@ -19,3 +19,4 @@ erl_crash.dump
 node_modules
 elm-stuff
 .DS_Store
+priv/static/js
